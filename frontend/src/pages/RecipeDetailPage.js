@@ -21,7 +21,9 @@ export default function RecipeDetailPage() {
       <p><strong>Instructions:</strong></p>
       <p>{recipe.instructions}</p>
       <p><strong>Created by:</strong> {recipe.createdByUsername || 'Unknown'}</p>
-      <p><strong>Created at:</strong> {new Date(recipe.createdAt).toLocaleString()}</p>
+      <p className="timestamp">
+        <strong>Created at:</strong> {new Date(recipe.createdAt).toLocaleString()}
+      </p>
     </div>
   );
 }
