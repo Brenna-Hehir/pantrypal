@@ -1,6 +1,9 @@
 package edu.uga.cs.pantrypal.model;
 
+import jakarta.persistence.*;
+
 public class User {
+
     private int userId;
     private String username;
     private String email;
