@@ -13,10 +13,6 @@ export default function AllRecipesPage() {
       .catch(err => console.error('Failed to fetch recipes:', err));
   }, []);
 
-  const handleCardClick = (id) => {
-    navigate(`/recipes/${id}`);
-  };
-
   return (
     <div className="recipes-container">
       <h2>All Recipes</h2>
@@ -26,12 +22,13 @@ export default function AllRecipesPage() {
         <ul className="recipe-list">
           {recipes.map(recipe => (
             <li
-              key={recipe.recipe_id}
+              key={recipe.recipeId}
               className="recipe-card"
-              onClick={() => handleCardClick(recipe.recipe_id)}
+              onClick={() => navigate(`/recipes/${recipe.recipeId}`)}
             >
               <h3>{recipe.title}</h3>
               <p><strong>Created by:</strong> {recipe.createdByUsername || 'Unknown'}</p>
+              <p><strong>Created at:</strong> {new Date(recipe.createdAt).toLocaleString()}</p>
             </li>
           ))}
         </ul>

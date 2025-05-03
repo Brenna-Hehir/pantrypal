@@ -1,31 +1,20 @@
 package edu.uga.cs.pantrypal.dto;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class RecipeDTO {
-    private Integer recipeId;
+    private int recipeId;
     private String title;
     private String instructions;
     private String createdByUsername;
-    private LocalDateTime createdAt;
+    private Timestamp createdAt;
 
-    // Constructors
-    public RecipeDTO() {}
-
-    public RecipeDTO(Integer recipeId, String title, String instructions, String createdByUsername, LocalDateTime createdAt) {
-        this.recipeId = recipeId;
-        this.title = title;
-        this.instructions = instructions;
-        this.createdByUsername = createdByUsername;
-        this.createdAt = createdAt;
-    }
-
-    // Getters and Setters
-    public Integer getRecipeId() {
+    // Getters and setters
+    public int getRecipeId() {
         return recipeId;
     }
 
-    public void setRecipeId(Integer recipeId) {
+    public void setRecipeId(int recipeId) {
         this.recipeId = recipeId;
     }
 
@@ -53,11 +42,11 @@ public class RecipeDTO {
         this.createdByUsername = createdByUsername;
     }
 
-    public LocalDateTime getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 }

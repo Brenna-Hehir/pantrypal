@@ -1,5 +1,6 @@
 package edu.uga.cs.pantrypal.controller;
 
+import edu.uga.cs.pantrypal.dto.RecipeDTO;
 import edu.uga.cs.pantrypal.model.Recipe;
 import edu.uga.cs.pantrypal.model.User;
 import edu.uga.cs.pantrypal.repository.RecipeRepository;
@@ -8,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
-import java.util.HashMap;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,42 +28,38 @@ public class RecipeController {
     private JdbcTemplate jdbcTemplate;
 
     @GetMapping
-    public List<Map<String, Object>> getAllRecipes() {
-        return jdbcTemplate.query(
-            "SELECT r.recipe_id, r.title, u.username AS createdByUsername " +
-            "FROM Recipe r JOIN User u ON r.created_by = u.user_id",
-            (rs, rowNum) -> {
-                Map<String, Object> map = new HashMap<>();
-                map.put("recipe_id", rs.getInt("recipe_id"));
-                map.put("title", rs.getString("title"));
-                map.put("createdByUsername", rs.getString("createdByUsername"));
-                return map;
-            }
-        );
+    public List<RecipeDTO> getAllRecipes() {
+        String sql = "SELECT r.recipe_id, r.title, r.created_at, u.username AS createdByUsername " +
+                     "FROM Recipe r JOIN User u ON r.created_by = u.user_id";
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
+            RecipeDTO dto = new RecipeDTO();
+            dto.setRecipeId(rs.getInt("recipe_id"));
+            dto.setTitle(rs.getString("title"));
+            dto.setCreatedByUsername(rs.getString("createdByUsername"));
+            dto.setCreatedAt(rs.getTimestamp("created_at"));
+            return dto;
+        });
+    }
+
+    @GetMapping("/{id}")
+    public RecipeDTO getRecipeById(@PathVariable Integer id) {
+        String sql = "SELECT r.recipe_id, r.title, r.instructions, r.created_at, u.username AS createdByUsername " +
+                     "FROM Recipe r JOIN User u ON r.created_by = u.user_id WHERE r.recipe_id = ?";
+
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
+            RecipeDTO dto = new RecipeDTO();
+            dto.setRecipeId(rs.getInt("recipe_id"));
+            dto.setTitle(rs.getString("title"));
+            dto.setInstructions(rs.getString("instructions"));
+            dto.setCreatedByUsername(rs.getString("createdByUsername"));
+            dto.setCreatedAt(rs.getTimestamp("created_at"));
+            return dto;
+        });
     }
 
     @GetMapping("/user/{userId}")
     public List<Recipe> getRecipesByUser(@PathVariable Integer userId) {
         return recipeRepository.findByCreatedByUserId(userId);
-    }
-
-    @GetMapping("/{id}")
-    public Map<String, Object> getRecipeById(@PathVariable Integer id) {
-        String sql = "SELECT r.recipe_id, r.title, r.instructions, u.username AS createdByUsername " +
-                    "FROM Recipe r JOIN User u ON r.created_by = u.user_id WHERE r.recipe_id = ?";
-
-        return jdbcTemplate.queryForObject(
-            sql,
-            new Object[]{id},
-            (rs, rowNum) -> {
-                Map<String, Object> map = new HashMap<>();
-                map.put("recipe_id", rs.getInt("recipe_id"));
-                map.put("title", rs.getString("title"));
-                map.put("instructions", rs.getString("instructions"));
-                map.put("createdByUsername", rs.getString("createdByUsername"));
-                return map;
-            }
-        );
     }
 
     @PostMapping

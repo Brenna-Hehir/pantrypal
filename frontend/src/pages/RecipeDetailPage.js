@@ -20,7 +20,8 @@ export default function RecipeDetailPage() {
       <h2>{recipe.title}</h2>
       <p><strong>Instructions:</strong></p>
       <p>{recipe.instructions}</p>
-      <p><strong>Created by:</strong> {recipe.createdBy?.username}</p>
+      <p><strong>Created by:</strong> {recipe.createdByUsername || 'Unknown'}</p>
+      <p><strong>Created at:</strong> {new Date(recipe.createdAt).toLocaleString()}</p>
     </div>
   );
 }
