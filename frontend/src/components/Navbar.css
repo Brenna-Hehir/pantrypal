@@ -1,0 +1,28 @@
+.navbar {
+    padding: 1rem 2rem;
+    background: #ffffff;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .navbar-logo {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #0077cc;
+  }
+  
+  .navbar-links a {
+    margin-right: 1.5rem;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navbar-links a.active {
+    font-weight: bold;
+    color: #0077cc;
+  }
+  
