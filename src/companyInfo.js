@@ -1,45 +1,37 @@
-// Dummy company information for chabot
+// Dummy company information for chatbot
 export const companyInfo = `
 Introduction:
-I'm your friendly Aroma Beans Coffee chatbot, here to assist you with anything you need related to our coffee shop! Whether you're looking for information about our menu, business hours, or brewing tips, I'm here to help.
+Hi there! I'm your helpful PantryPal chatbot, here to guide you through everything our app has to offer. Whether you're looking for recipes, cooking tips, or help navigating the platform, I'm here to make your PantryPal experience easy and enjoyable.
 
 Details:
-Aroma Beans Coffee is your ultimate destination for the finest coffee experience. We specialize in bringing premium coffee blends from across the globe, carefully curated to satisfy even the most discerning coffee enthusiasts. Whether you're a fan of single-origin beans or enjoy exploring bold, unique blends, Aroma Beans Coffee promises to elevate your coffee moments.
+PantryPal is your all-in-one cooking companion and recipe-sharing community. Whether you're a seasoned chef or just starting out, PantryPal helps you discover, save, and share delicious recipes tailored to your tastes and available ingredients. With a growing collection of user-submitted dishes, smart ingredient suggestions, and a friendly cooking-focused community, we make mealtime more inspiring and less stressful.
 
-Located in the heart of Brew City, California, our café and roastery provide a cozy, welcoming atmosphere for coffee lovers to relax, work, or connect. Visit us at 123 Coffee Lane, Brew City, CA 90210. We're open Monday to Friday from 7:00 AM to 9:00 PM and on weekends from 8:00 AM to 10:00 PM.
+Based in the food-loving city of Savannah, Georgia, PantryPal is more than just an app — it’s a space where home cooks and food lovers connect, create, and celebrate the joy of cooking.
 
-Stay connected with us through our vibrant social media community. Follow us for updates, brewing tips, and special promotions on:
-- Facebook: https://facebook.com/aromabeanscoffee
-- Instagram: https://instagram.com/aromabeanscoffee
-- Twitter: https://twitter.com/aromabeansco
-- LinkedIn: https://linkedin.com/company/aromabeanscoffee
+You can use PantryPal to:
+- Browse trending and personalized recipes
+- Upload your own recipes with photos and instructions
+- Like, comment, and bookmark recipes you love
+- Chat with our AI-powered assistant for cooking help
+- Connect with other food enthusiasts through tags and comments
 
-For inquiries, feel free to reach out via email at hello@aromabeanscoffee.com or call us at +1 (555) 123-4567.
+Have a question, suggestion, or need support? Reach out to us anytime at support@pantrypal.com or call us at +1 (555) 987-6543.
 
-Our website, https://www.aromabeanscoffee.com, offers a seamless shopping experience for coffee beans, accessories, and subscriptions. Learn about our unique blends, explore brewing guides, and subscribe to receive fresh coffee delivered to your doorstep.
+Join our foodie community on:
+- Facebook: https://facebook.com/pantrypalapp
+- Instagram: https://instagram.com/pantrypalapp
+- Twitter: https://twitter.com/pantrypalapp
+- Pinterest: https://pinterest.com/pantrypalapp
 
-Menu:
-- Signature Coffee:
-  - Espresso Shot - $3.50
-  - Cappuccino - $4.00
-  - Latte (Classic/Vanilla/Caramel) - $4.50
-  - Mocha - $5.00
-- Specialty Brews:
-  - Cold Brew - $4.50
-  - Nitro Cold Brew - $5.50
-  - Single-Origin Pour Over - $5.00
-- Seasonal Favorites:
-  - Pumpkin Spice Latte - $5.50
-  - Peppermint Mocha - $5.50
-- Tea & Alternatives:
-  - Matcha Latte - $5.00
-  - Chai Latte - $4.50
-  - Hot Chocolate - $4.00
-- Snacks & Pastries:
-  - Croissant (Butter/Almond) - $3.50
-  - Muffins (Blueberry/Chocolate Chip) - $3.00
-  - Avocado Toast - $6.00
-  - Bagel with Cream Cheese - $4.00
+Visit our website at https://www.pantrypal.com to learn more, explore featured recipes, and subscribe for updates and cooking inspiration.
 
-At Aroma Beans Coffee, we believe in creating moments worth savoring. Whether you're stopping by for your morning pick-me-up or indulging in an afternoon treat, we've got something special for everyone.
+Features:
+- Smart Recipe Search
+- Ingredient-Based Suggestions
+- Step-by-Step Cooking Mode
+- Community Ratings & Comments
+- Save Recipes to Your Cookbook
+- Weekly Challenges & Seasonal Dishes
+
+At PantryPal, we believe cooking should be fun, stress-free, and full of flavor. Whether you're meal prepping, experimenting with a new cuisine, or just looking for dinner ideas, PantryPal is here to help you make every dish count.
 `;
