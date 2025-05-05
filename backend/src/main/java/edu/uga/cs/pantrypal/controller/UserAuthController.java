@@ -3,9 +3,13 @@ package edu.uga.cs.pantrypal.controller;
 import edu.uga.cs.pantrypal.model.User;
 import edu.uga.cs.pantrypal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
 
 @RestController
@@ -32,16 +36,20 @@ public class UserAuthController {
     }
 
     @PostMapping("/login")
-    public String loginUser(@RequestBody User loginData) {
+    public ResponseEntity<?> loginUser(@RequestBody User loginData) {
         Optional<User> userOptional = userRepository.findByUsername(loginData.getUsername());
         if (userOptional.isEmpty()) {
-            return "Invalid credentials";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
         User user = userOptional.get();
         if (passwordEncoder.matches(loginData.getPasswordHash(), user.getPasswordHash())) {
-            return "Login successful";
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Login successful");
+            response.put("userId", user.getUserId());
+            response.put("username", user.getUsername());
+            return ResponseEntity.ok(response);
         } else {
-            return "Invalid credentials";
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }
     }
 }

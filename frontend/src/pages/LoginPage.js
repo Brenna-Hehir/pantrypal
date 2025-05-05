@@ -18,7 +18,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await fetch("http://localhost:8080/api/login", {
         method: "POST",
@@ -27,17 +27,24 @@ export default function LoginPage() {
         },
         body: JSON.stringify({
           username: formData.username,
-          passwordHash: formData.password, // Must match backend's expected field
+          passwordHash: formData.password,
         }),
       });
-
-      const result = await response.text();
-      setMessage(result);
+  
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("userId", data.userId);
+        localStorage.setItem("username", data.username);
+        setMessage(data.message); // "Login successful"
+      } else {
+        const errorMsg = await response.text();
+        setMessage(errorMsg);
+      }
     } catch (error) {
       console.error("Login failed:", error);
       setMessage("An error occurred. Please try again.");
     }
-  };
+  };  
 
   return (
     <div className="login-container">

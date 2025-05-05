@@ -10,8 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/recipes")
@@ -46,15 +45,25 @@ public class RecipeController {
         String sql = "SELECT r.recipe_id, r.title, r.instructions, r.created_at, u.username AS createdByUsername " +
                      "FROM Recipe r JOIN User u ON r.created_by = u.user_id WHERE r.recipe_id = ?";
 
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
-            RecipeDTO dto = new RecipeDTO();
-            dto.setRecipeId(rs.getInt("recipe_id"));
-            dto.setTitle(rs.getString("title"));
-            dto.setInstructions(rs.getString("instructions"));
-            dto.setCreatedByUsername(rs.getString("createdByUsername"));
-            dto.setCreatedAt(rs.getTimestamp("created_at"));
-            return dto;
+        RecipeDTO dto = jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
+            RecipeDTO result = new RecipeDTO();
+            result.setRecipeId(rs.getInt("recipe_id"));
+            result.setTitle(rs.getString("title"));
+            result.setInstructions(rs.getString("instructions"));
+            result.setCreatedByUsername(rs.getString("createdByUsername"));
+            result.setCreatedAt(rs.getTimestamp("created_at"));
+            return result;
         });
+
+        // Get ingredients for this recipe
+        String ingSql = "SELECT i.name FROM Ingredient i " +
+                        "JOIN RecipeIngredient ri ON i.ingredient_id = ri.ingredient_id " +
+                        "WHERE ri.recipe_id = ?";
+        List<String> ingredients = jdbcTemplate.query(ingSql, new Object[]{id},
+            (rs, rowNum) -> rs.getString("name"));
+        dto.setIngredients(ingredients);
+
+        return dto;
     }
 
     @GetMapping("/user/{userId}")
@@ -63,20 +72,51 @@ public class RecipeController {
     }
 
     @PostMapping
-    public String createRecipe(@RequestBody Recipe recipe) {
-        if (recipe.getCreatedBy() == null || recipe.getCreatedBy().getUserId() == null) {
-            return "Missing creator";
-        }
-
-        Optional<User> user = userRepository.findById(recipe.getCreatedBy().getUserId());
-        if (user.isEmpty()) {
-            return "Invalid user";
-        }
-
-        recipe.setCreatedBy(user.get());
-        recipeRepository.save(recipe);
-        return "Recipe created successfully";
+public String createRecipe(@RequestBody RecipeDTO recipeDto) {
+    if (recipeDto.getCreatedByUserId() == 0) {
+        return "Missing creator";
     }
+
+    Optional<User> user = userRepository.findById(recipeDto.getCreatedByUserId());
+    if (user.isEmpty()) {
+        return "Invalid user";
+    }
+
+    Recipe recipe = new Recipe();
+    recipe.setTitle(recipeDto.getTitle());
+    recipe.setInstructions(recipeDto.getInstructions());
+    recipe.setCreatedBy(user.get());
+
+    recipeRepository.save(recipe);
+
+    // Insert ingredients and RecipeIngredient links
+    Integer recipeId = recipe.getRecipeId();
+    for (String ing : recipeDto.getIngredients()) {
+        // Insert into Ingredient table if it doesn't exist
+        Integer ingredientId = jdbcTemplate.query(
+            "SELECT ingredient_id FROM Ingredient WHERE name = ?",
+            new Object[]{ing},
+            rs -> rs.next() ? rs.getInt("ingredient_id") : null
+        );
+
+        if (ingredientId == null) {
+            jdbcTemplate.update("INSERT INTO Ingredient (name) VALUES (?)", ing);
+            ingredientId = jdbcTemplate.queryForObject(
+                "SELECT LAST_INSERT_ID()",
+                Integer.class
+            );
+        }
+
+        // Link to recipe in RecipeIngredient
+        jdbcTemplate.update(
+            "INSERT INTO RecipeIngredient (recipe_id, ingredient_id, quantity) VALUES (?, ?, ?)",
+            recipeId, ingredientId, 1.0
+        );
+    }
+
+    return "Recipe created successfully";
+}
+
 
     @DeleteMapping("/{id}")
     public String deleteRecipe(@PathVariable Integer id) {
