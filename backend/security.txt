@@ -1,0 +1,7 @@
+We used the BCrypt hashing algorithm to securely store user passwords.
+
+When a user signs up, their password is hashed using Spring Security's BCryptPasswordEncoder before being stored in the database. The hashed value is stored in the `password_hash` column of the User table. This ensures that plaintext passwords are never stored or transmitted.
+
+During login, the submitted password is hashed and compared against the stored hash using BCrypt's `matches` method to authenticate the user.
+
+This approach protects against common attacks like password leakage and rainbow table attacks, as BCrypt includes a built-in salt and is computationally expensive to brute-force.

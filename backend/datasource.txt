@@ -1,0 +1,9 @@
+Data Source: Manually Generated
+
+The data used in this project was manually created for demonstration and testing purposes. No external datasets were used.
+
+User accounts were inserted using SQL scripts to simulate registered users. Recipes, ingredients, and saved recipes were also created by hand through a combination of SQL INSERT statements and frontend form submissions. 
+
+This approach ensured that the database contained valid and varied sample data across all key entities: users, recipes, ingredients, saved recipes, and comments.
+
+The insertions are provided in the `data.sql` file.
