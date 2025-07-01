@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/pantrypal/static/css/main.a36c154a.chunk.css",
+    "main.js": "/pantrypal/static/js/main.542e8ba7.chunk.js",
+    "main.js.map": "/pantrypal/static/js/main.542e8ba7.chunk.js.map",
+    "runtime-main.js": "/pantrypal/static/js/runtime-main.0f2b330a.js",
+    "runtime-main.js.map": "/pantrypal/static/js/runtime-main.0f2b330a.js.map",
+    "static/js/2.e8f85dca.chunk.js": "/pantrypal/static/js/2.e8f85dca.chunk.js",
+    "static/js/2.e8f85dca.chunk.js.map": "/pantrypal/static/js/2.e8f85dca.chunk.js.map",
+    "static/js/3.542971a0.chunk.js": "/pantrypal/static/js/3.542971a0.chunk.js",
+    "static/js/3.542971a0.chunk.js.map": "/pantrypal/static/js/3.542971a0.chunk.js.map",
+    "index.html": "/pantrypal/index.html",
+    "precache-manifest.4f02ed59176da3415b4c3de338205fbe.js": "/pantrypal/precache-manifest.4f02ed59176da3415b4c3de338205fbe.js",
+    "service-worker.js": "/pantrypal/service-worker.js",
+    "static/css/main.a36c154a.chunk.css.map": "/pantrypal/static/css/main.a36c154a.chunk.css.map",
+    "static/js/2.e8f85dca.chunk.js.LICENSE.txt": "/pantrypal/static/js/2.e8f85dca.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0f2b330a.js",
+    "static/js/2.e8f85dca.chunk.js",
+    "static/css/main.a36c154a.chunk.css",
+    "static/js/main.542e8ba7.chunk.js"
+  ]
+}
