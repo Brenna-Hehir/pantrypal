@@ -8,7 +8,7 @@ export default function SavedRecipesPage() {
 
   useEffect(() => {
     if (!userId) return;
-    fetch(`http://localhost:8080/api/saved/user/${userId}`)
+    fetch(`https://pantrypal-backend-218e.onrender.com/api/saved/user/${userId}`)
       .then((res) => res.json())
       .then((data) => setSavedRecipes(data))
       .catch((err) => console.error('Error fetching saved recipes:', err));

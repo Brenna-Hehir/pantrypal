@@ -7,7 +7,7 @@ export default function AllRecipesPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/recipes')
+    fetch('https://pantrypal-backend-218e.onrender.com/api/recipes')
       .then(res => res.json())
       .then(data => setRecipes(data))
       .catch(err => console.error('Failed to fetch recipes:', err));

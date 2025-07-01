@@ -42,7 +42,7 @@ export default function CreateRecipePage() {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/recipes", {
+      const response = await fetch("https://pantrypal-backend-218e.onrender.com/api/recipes", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(recipeData),

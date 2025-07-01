@@ -15,14 +15,14 @@ export default function RecipeDetailPage() {
 
   useEffect(() => {
     // Fetch recipe details
-    fetch(`http://localhost:8080/api/recipes/${id}`)
+    fetch(`https://pantrypal-backend-218e.onrender.com/api/recipes/${id}`)
       .then(res => res.json())
       .then(data => setRecipe(data))
       .catch(err => console.error("Error fetching recipe:", err));
 
     // Fetch saved status
     if (userId) {
-      fetch(`http://localhost:8080/api/saved/user/${userId}`)
+      fetch(`https://pantrypal-backend-218e.onrender.com/api/saved/user/${userId}`)
         .then(res => res.json())
         .then(data => {
           const found = data.some(r => r.recipe.recipeId === parseInt(id));
@@ -32,14 +32,14 @@ export default function RecipeDetailPage() {
     }
 
     // Fetch comments
-    fetch(`http://localhost:8080/api/comments/recipe/${id}`)
+    fetch(`https://pantrypal-backend-218e.onrender.com/api/comments/recipe/${id}`)
       .then(res => res.json())
       .then(data => setComments(data))
       .catch(err => console.error("Error fetching comments:", err));
   }, [id, userId]);
 
   const handleSaveToggle = async () => {
-    const endpoint = 'http://localhost:8080/api/saved';
+    const endpoint = 'https://pantrypal-backend-218e.onrender.com/api/saved';
     const body = { userId, recipeId: parseInt(id) };
 
     try {
@@ -70,7 +70,7 @@ export default function RecipeDetailPage() {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/api/comments", {
+      const response = await fetch("https://pantrypal-backend-218e.onrender.com/api/comments", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
@@ -81,7 +81,7 @@ export default function RecipeDetailPage() {
       setNewComment('');
 
       // Re-fetch comments
-      const updated = await fetch(`http://localhost:8080/api/comments/recipe/${id}`).then(res => res.json());
+      const updated = await fetch(`https://pantrypal-backend-218e.onrender.com/api/comments/recipe/${id}`).then(res => res.json());
       setComments(updated);
     } catch (err) {
       console.error("Comment submission failed:", err);
