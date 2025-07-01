@@ -21,7 +21,7 @@ export default function SignupPage() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://pantrypal-backend-218e.onrender.com/api/signup', {
+      const response = await fetch('https://pantrypal-backend-218e.onrender.com/api/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
