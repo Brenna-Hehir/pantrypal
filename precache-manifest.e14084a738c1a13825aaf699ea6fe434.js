@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e25d2441e3a8bc13da8c84f5a62b6cd9",
+    "revision": "9ef38b0f5e0c65ae6c137562b7bdd9fc",
     "url": "/pantrypal/index.html"
   },
   {
-    "revision": "92168236819d9a8194d3",
-    "url": "/pantrypal/static/css/main.a36c154a.chunk.css"
+    "revision": "c913f49d4e44e85b9738",
+    "url": "/pantrypal/static/css/main.4032516f.chunk.css"
   },
   {
     "revision": "a77cbf291e2e39de1a5d",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/pantrypal/static/js/3.542971a0.chunk.js"
   },
   {
-    "revision": "92168236819d9a8194d3",
-    "url": "/pantrypal/static/js/main.542e8ba7.chunk.js"
+    "revision": "c913f49d4e44e85b9738",
+    "url": "/pantrypal/static/js/main.15b7da51.chunk.js"
   },
   {
     "revision": "294eac4504f591770fb9",
